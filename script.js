@@ -11,3 +11,31 @@ function getComputerChoice() {
 }
 
 getComputerChoice();
+
+function getHumanChoice() {
+    let choice = prompt("Choose between 'rock', 'paper', or 'scissors'", '');
+
+    if (choice !== null && choice !== '') 
+    {
+        choice = choice.toLowerCase().trim(); // Convert to lowercase and trim whitespace
+
+        if (choice === 'rock' || choice === 'paper' || choice === 'scissors') 
+        {
+            console.log(choice);
+        } 
+        else 
+        {
+            console.log("Invalid Choice! Please choose 'rock', 'paper', or 'scissors'.");
+        }
+    }
+    else if(choice === '') 
+    {
+        console.log("Input was empty or canceled. Please choose 'rock', 'paper', or 'scissors'.");
+    }
+    else 
+    {
+        console.log("Input was empty or canceled.");
+    }
+}
+
+getHumanChoice();
