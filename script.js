@@ -1,3 +1,5 @@
+// Step 2
+
 function getComputerChoice() {
 
     // an array with the desired values
@@ -7,10 +9,13 @@ function getComputerChoice() {
     let value = Math.floor(Math.random() * array1.length)
 
     // print the targeted value in array1
-    console.log(array1[value])
+    console.log("Computer:",array1[value])
+
+    return array1[value];
 }
 
-getComputerChoice();
+
+// Step 3
 
 function getHumanChoice() {
     let choice = prompt("Choose between 'rock', 'paper', or 'scissors'", '');
@@ -21,7 +26,8 @@ function getHumanChoice() {
 
         if (choice === 'rock' || choice === 'paper' || choice === 'scissors') 
         {
-            console.log(choice);
+            console.log("Human:",choice);
+            return choice;
         } 
         else 
         {
@@ -38,8 +44,42 @@ function getHumanChoice() {
     }
 }
 
-getHumanChoice();
+
+// Step 4
 
 let humanScore = 0;
 
 let computerScore = 0;
+
+// Step 5
+
+let humanSelection = getHumanChoice()
+let computerSelection = getComputerChoice()
+
+playRound(humanSelection, computerSelection);
+
+function playRound(humanChoice, computerChoice) {
+
+    let a = humanChoice
+    let b = computerChoice
+    // console.log(humanChoice)
+    // console.log(computerChoice)
+    if((a === 'paper' && b === 'paper') 
+        || (a === 'scissors' && b === 'scissors')
+        || (a === 'rock' && b === 'rock'))
+    {
+        console.log("Its a tie!")
+    }   
+    else if((a === 'paper' && b === 'rock')
+            || (a === 'scissors' && b === 'paper')
+            || (a === 'rock' && b === 'scissors'))
+    {
+        console.log("Human wins!")
+    }
+    else if((a === 'paper' && b === 'scissors')
+            || (a === 'scissors' && b === 'rock')
+            || (a === 'rock' && b === 'paper'))
+    {
+        console.log("Computer wins!")
+    }
+}
