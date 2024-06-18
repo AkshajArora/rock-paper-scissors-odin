@@ -53,10 +53,10 @@ let computerScore = 0;
 
 // Step 5
 
-let humanSelection = getHumanChoice()
-let computerSelection = getComputerChoice()
+// let humanSelection = getHumanChoice()
+// let computerSelection = getComputerChoice()
 
-playRound(humanSelection, computerSelection);
+// playRound(humanSelection, computerSelection);
 
 function playRound(humanChoice, computerChoice) {
 
@@ -86,4 +86,35 @@ function playRound(humanChoice, computerChoice) {
     }
     console.log("Human Score:",humanScore)
     console.log("Computer Score:",computerScore)
+
+    // playGame();
 }
+
+//  Step 6
+
+let count = 0
+
+function playGame() {
+    
+    while(count < 5) 
+    {
+        console.log("***************ROUND",count+1,"***************")
+        count = count + 1;
+        let humanSelection = getHumanChoice()
+        let computerSelection = getComputerChoice()
+        playRound(humanSelection, computerSelection);   
+    }
+    if(humanScore > computerScore)
+    {
+        console.log("The winner is Human!!!")
+    }
+    else if(humanScore === computerScore)
+    {
+        console.log("IT'S A TIE!!!!!")
+    }
+    else {
+        console.log("The winner is Computer!!!")
+    }
+}
+
+playGame();
