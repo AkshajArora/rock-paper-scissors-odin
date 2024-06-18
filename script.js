@@ -75,11 +75,15 @@ function playRound(humanChoice, computerChoice) {
             || (a === 'rock' && b === 'scissors'))
     {
         console.log("Human wins!")
+        humanScore++
     }
     else if((a === 'paper' && b === 'scissors')
             || (a === 'scissors' && b === 'rock')
             || (a === 'rock' && b === 'paper'))
     {
         console.log("Computer wins!")
+        computerScore++
     }
+    console.log("Human Score:",humanScore)
+    console.log("Computer Score:",computerScore)
 }
