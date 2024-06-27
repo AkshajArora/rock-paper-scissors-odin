@@ -1,120 +1,102 @@
-// Step 2
+const results = document.querySelector('#results')
+let content;
+
+let humanSelection;
+let computerSelection;
+let count = 0
+let humanScore = 0;
+let computerScore = 0;
+
+let btn1 = document.querySelector('#rock')
+let btn2 = document.querySelector('#paper')
+let btn3 = document.querySelector('#scissors')
+
+let humanChoice;
+let computerChoice;
+
 
 function getComputerChoice() {
 
-    // an array with the desired values
     let array1 = ['rock', 'paper','scissors']
 
-    // This will generate a random number between [0, array.length - 1]
     let value = Math.floor(Math.random() * array1.length)
 
-    // print the targeted value in array1
-    console.log("Computer:",array1[value])
+    results.innerHTML = (`Computer: ${array1[value]}`);
 
     return array1[value];
 }
 
 
-// Step 3
-
-function getHumanChoice() {
-    let choice = prompt("Choose between 'rock', 'paper', or 'scissors'", '');
-
-    if (choice !== null && choice !== '') 
-    {
-        choice = choice.toLowerCase().trim(); // Convert to lowercase and trim whitespace
-
-        if (choice === 'rock' || choice === 'paper' || choice === 'scissors') 
-        {
-            console.log("Human:",choice);
-            return choice;
-        } 
-        else 
-        {
-            console.log("Invalid Choice! Please choose 'rock', 'paper', or 'scissors'.");
-        }
-    }
-    else if(choice === '') 
-    {
-        console.log("Input was empty or canceled. Please choose 'rock', 'paper', or 'scissors'.");
-    }
-    else 
-    {
-        console.log("Input was empty or canceled.");
-    }
+if(btn1) {
+    btn1.addEventListener('click', () => {
+        let computerSelection = getComputerChoice();
+        let humanSelection = 'rock';
+        results.innerHTML += ('<br>Human: rock')
+        playRound(humanSelection, computerSelection);
+    });
+}
+if(btn2) {
+    btn2.addEventListener('click', () => {
+        let computerSelection = getComputerChoice();
+        let humanSelection = 'paper';
+        results.innerHTML += ('<br>Human: paper')
+        playRound(humanSelection, computerSelection);
+    });
+}
+if(btn3) {
+    btn3.addEventListener('click', () => {
+        let computerSelection = getComputerChoice();
+        let humanSelection = 'scissors';
+        results.innerHTML += ('<br>Human: scissors')
+        playRound(humanSelection, computerSelection);
+    });
 }
 
-
-// Step 4
-
-let humanScore = 0;
-
-let computerScore = 0;
-
-// Step 5
-
-// let humanSelection = getHumanChoice()
-// let computerSelection = getComputerChoice()
-
-// playRound(humanSelection, computerSelection);
 
 function playRound(humanChoice, computerChoice) {
 
     let a = humanChoice
     let b = computerChoice
-    // console.log(humanChoice)
-    // console.log(computerChoice)
+
+    // tie
     if((a === 'paper' && b === 'paper') 
         || (a === 'scissors' && b === 'scissors')
         || (a === 'rock' && b === 'rock'))
     {
-        console.log("Its a tie!")
+        results.innerHTML += (`<br>Human Score: ${humanScore}`)
+        results.innerHTML += (`<br>Computer Score: ${computerScore}`)
+        results.innerHTML += ('<h4>Its a tie!</h4><hr>')
     }   
+    // human win
     else if((a === 'paper' && b === 'rock')
             || (a === 'scissors' && b === 'paper')
             || (a === 'rock' && b === 'scissors'))
     {
-        console.log("Human wins!")
-        humanScore++
+        humanScore++;
+        results.innerHTML += (`<br>Human Score: ${humanScore}`)
+        results.innerHTML += (`<br>Computer Score: ${computerScore}`)
+        results.innerHTML += ('<h4>Human Wins!</h4><hr>')
     }
+    // computer win
     else if((a === 'paper' && b === 'scissors')
             || (a === 'scissors' && b === 'rock')
             || (a === 'rock' && b === 'paper'))
     {
-        console.log("Computer wins!")
-        computerScore++
+        computerScore++;
+        results.innerHTML += (`<br>Human Score: ${humanScore}`)
+        results.innerHTML += (`<br>Computer Score: ${computerScore}`)
+        results.innerHTML += ('<h4>Computer Wins!</h4><hr>')
     }
-    console.log("Human Score:",humanScore)
-    console.log("Computer Score:",computerScore)
 
-    // playGame();
-}
-
-//  Step 6
-
-let count = 0
-
-function playGame() {
-    
-    while(count < 5) 
-    {
-        console.log("***************ROUND",count+1,"***************")
-        count = count + 1;
-        let humanSelection = getHumanChoice()
-        let computerSelection = getComputerChoice()
-        playRound(humanSelection, computerSelection);   
+    console.log('-----------------------------------------------------------------------------------------------------------------')
+    if(humanScore === 5) {
+        results.innerHTML = '<h2>Human Wins!!!</h2>'
+        results.innerHTML += (`<br>Human Score: ${humanScore}`)
+        results.innerHTML += (`<br>Computer Score: ${computerScore}`)
     }
-    if(humanScore > computerScore)
-    {
-        console.log("The winner is Human!!!")
-    }
-    else if(humanScore === computerScore)
-    {
-        console.log("IT'S A TIE!!!!!")
-    }
-    else {
-        console.log("The winner is Computer!!!")
+    else if(computerScore === 5) {
+        results.innerHTML = '<h2>Computer Wins!!!</h2>'
+        results.innerHTML += (`<br>Human Score: ${humanScore}`)
+        results.innerHTML += (`<br>Computer Score: ${computerScore}`)
     }
 }
-
-playGame();
